@@ -159,12 +159,14 @@ namespace Statiq.Common
             type.ThrowIfNull(nameof(type));
             Type adapter = typeof(TryConvertAdapter<>).MakeGenericType(type);
             object[] args = new object[] { value, null };
+#pragma warning disable CS8605 // Unboxing a possibly null value.
             bool ret = (bool)adapter.InvokeMember(
                 nameof(TryConvertAdapter<object>.TryConvert),
                 BindingFlags.Public | BindingFlags.Static | BindingFlags.InvokeMethod,
                 null,
                 null,
                 args);
+#pragma warning restore CS8605 // Unboxing a possibly null value.
             result = args[1];
             return ret;
         }
@@ -206,8 +208,9 @@ namespace Statiq.Common
             // Special case if value is an enumerable that hasn't overridden .ToString() and T is a string
             // Otherwise we'd end up doing a .ToString() on the enumerable
             IEnumerable enumerableValue = value is string ? null : value as IEnumerable;
-            if (typeof(T) == typeof(string) && enumerableValue is object
-                && value.GetType().GetMethod("ToString").DeclaringType == typeof(object))
+#pragma warning disable SA1009 // Closing parenthesis should be spaced correctly
+            if (typeof(T) == typeof(string) && enumerableValue != null
+                && value.GetType().GetMethod("ToString")!.DeclaringType == typeof(object))
             {
                 if (TryGetFirstConvertibleItem(enumerableValue, out result))
                 {
@@ -215,6 +218,7 @@ namespace Statiq.Common
                 }
                 enumerableValue = null;  // Don't try getting the first item again for the more general case below
             }
+#pragma warning restore SA1009 // Closing parenthesis should be spaced correctly
 
             // Check a normal conversion (in case it's a special type that implements a cast, IConvertible, or something)
             if (MetadataTypeConverter<T>.TryConvert(value, out result))

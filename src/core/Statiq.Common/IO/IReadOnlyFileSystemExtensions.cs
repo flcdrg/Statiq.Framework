@@ -21,10 +21,12 @@ namespace Statiq.Common
         /// path is deeper than the real one). This contains all the mapped input paths that couldn't be unmapped.
         /// </param>
         /// <returns>The "unmapped" input paths.</returns>
+#pragma warning disable CA1021 // Avoid out parameters
         public static IEnumerable<NormalizedPath> GetUnmappedInputPaths(
             this IReadOnlyFileSystem fileSystem,
             in NormalizedPath path,
             out HashSet<NormalizedPath> nonExistingMappedPaths)
+#pragma warning restore CA1021 // Avoid out parameters
         {
             fileSystem.ThrowIfNull(nameof(fileSystem));
             path.ThrowIfNull(nameof(path));

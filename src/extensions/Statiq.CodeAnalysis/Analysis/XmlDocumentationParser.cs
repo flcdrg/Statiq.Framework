@@ -466,7 +466,7 @@ namespace Statiq.CodeAnalysis.Analysis
 
         private class XAttributeNameEqualityComparer : IEqualityComparer<XAttribute>
         {
-            public bool Equals(XAttribute x, XAttribute y)
+            public bool Equals(XAttribute? x, XAttribute? y)
             {
                 return x.Name.ToString().Equals(y.Name.ToString());
             }

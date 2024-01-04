@@ -88,7 +88,9 @@ namespace Statiq.Common
         public sealed override Task<int> ReadAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)
             => Task.FromResult(Read(new Span<byte>(buffer, offset, count)));
 
+#pragma warning disable CA1725 // Parameter names should match base declaration
         public sealed override ValueTask<int> ReadAsync(Memory<byte> memory, CancellationToken cancellationToken)
+#pragma warning restore CA1725 // Parameter names should match base declaration
             => new ValueTask<int>(Read(memory.Span));
 
         public sealed override int Read(Span<byte> buffer)
@@ -196,11 +198,13 @@ namespace Statiq.Common
 
         public sealed override int WriteTimeout { get => base.WriteTimeout; set => base.WriteTimeout = value; }
 
+#pragma warning disable CS0672,SYSLIB0010 // Member overrides obsolete member
         public sealed override object InitializeLifetimeService() => base.InitializeLifetimeService();
+#pragma warning restore CS0672,SYSLIB0010 // Member overrides obsolete member
 
-        public sealed override IAsyncResult BeginRead(byte[] buffer, int offset, int count, AsyncCallback callback, object state) => base.BeginRead(buffer, offset, count, callback, state);
+        public sealed override IAsyncResult BeginRead(byte[] buffer, int offset, int count, AsyncCallback? callback, object? state) => base.BeginRead(buffer, offset, count, callback, state);
 
-        public sealed override IAsyncResult BeginWrite(byte[] buffer, int offset, int count, AsyncCallback callback, object state) => base.BeginWrite(buffer, offset, count, callback, state);
+        public sealed override IAsyncResult BeginWrite(byte[] buffer, int offset, int count, AsyncCallback? callback, object? state) => base.BeginWrite(buffer, offset, count, callback, state);
 
         public sealed override void Close() => base.Close();
 

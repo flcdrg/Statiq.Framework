@@ -16,6 +16,7 @@ namespace Statiq.Common
     /// and https://andrewlock.net/making-getoradd-on-concurrentdictionary-thread-safe-using-lazy/.
     /// </remarks>
     public class ConcurrentCache<TKey, TValue> : IConcurrentCache, IReadOnlyDictionary<TKey, TValue>
+        where TKey : notnull
     {
         private readonly ConcurrentDictionary<TKey, Lazy<TValue>> _dictionary;
 

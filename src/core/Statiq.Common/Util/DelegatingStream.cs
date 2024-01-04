@@ -29,7 +29,7 @@ namespace Statiq.Common
         public override async Task FlushAsync(CancellationToken cancellationToken) =>
             await Stream.FlushAsync(cancellationToken);
 
-        public override IAsyncResult BeginRead(byte[] buffer, int offset, int count, AsyncCallback callback, object state) =>
+        public override IAsyncResult BeginRead(byte[] buffer, int offset, int count, AsyncCallback? callback, object? state) =>
             Stream.BeginRead(buffer, offset, count, callback, state);
 
         public override int EndRead(IAsyncResult asyncResult) => Stream.EndRead(asyncResult);
@@ -37,7 +37,7 @@ namespace Statiq.Common
         public override async Task<int> ReadAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken) =>
             await Stream.ReadAsync(buffer, offset, count, cancellationToken);
 
-        public override IAsyncResult BeginWrite(byte[] buffer, int offset, int count, AsyncCallback callback, object state) =>
+        public override IAsyncResult BeginWrite(byte[] buffer, int offset, int count, AsyncCallback? callback, object? state) =>
             Stream.BeginWrite(buffer, offset, count, callback, state);
 
         public override void EndWrite(IAsyncResult asyncResult) => Stream.EndWrite(asyncResult);

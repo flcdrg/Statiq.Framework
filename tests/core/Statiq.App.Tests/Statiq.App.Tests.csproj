@@ -3,4 +3,7 @@
     <ProjectReference Include="..\..\..\src\core\Statiq.App\Statiq.App.csproj" />
     <ProjectReference Include="..\..\..\src\core\Statiq.Testing\Statiq.Testing.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Update="Microsoft.NET.Test.Sdk" Version="17.8.0" />
+  </ItemGroup>
 </Project>

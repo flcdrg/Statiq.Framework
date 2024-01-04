@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using CsvHelper;
 using CsvHelper.Configuration;
+using Statiq.Common;
 
 namespace Statiq.Tables
 {
@@ -18,7 +20,7 @@ namespace Statiq.Tables
         public static IReadOnlyList<IReadOnlyList<string>> GetTable(TextReader reader, string delimiter = null)
         {
             List<IReadOnlyList<string>> records = new List<IReadOnlyList<string>>();
-            Configuration configuration = new Configuration
+            CsvConfiguration configuration = new CsvConfiguration(CultureInfo.InvariantCulture)
             {
                 HasHeaderRecord = false
             };
@@ -27,12 +29,17 @@ namespace Statiq.Tables
                 configuration.Delimiter = delimiter;
             }
 
-            using (CsvReader csv = new CsvReader(reader, configuration))
+            using (CsvParser csv = new CsvParser(reader, configuration))
             {
                 while (csv.Read())
                 {
-                    string[] currentRecord = csv.Context.Record;
-                    records.Add(currentRecord);
+#pragma warning disable SA1011 // Closing square brackets should be spaced correctly
+                    string[]? currentRecord = csv.Record;
+#pragma warning restore SA1011 // Closing square brackets should be spaced correctly
+                    if (currentRecord is object)
+                    {
+                        records.Add(currentRecord);
+                    }
                 }
             }
 
@@ -46,18 +53,18 @@ namespace Statiq.Tables
             writer.Flush();
         }
 
-        public static void WriteTable(IEnumerable<IEnumerable<string>> records, TextWriter writer)
+        public static void WriteTable(IEnumerable<IEnumerable<string>>? records, TextWriter writer)
         {
             if (records is null)
             {
                 return;
             }
 
-            CsvWriter csv = new CsvWriter(writer, new Configuration { QuoteAllFields = true });
+            CsvWriter csv = new CsvWriter(writer, new CsvConfiguration(CultureInfo.InvariantCulture) { ShouldQuote = _ => true });
             {
-                foreach (IEnumerable<string> row in records)
+                foreach (IEnumerable<string?> row in records)
                 {
-                    foreach (string cell in row)
+                    foreach (string? cell in row)
                     {
                         csv.WriteField(cell ?? string.Empty);
                     }

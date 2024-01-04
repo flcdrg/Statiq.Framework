@@ -471,7 +471,7 @@ namespace Statiq.Common
         }
 
         /// <inheritdoc />
-        public override bool Equals(object obj) => Equals(obj, DefaultComparisonType);
+        public override bool Equals(object? obj) => Equals(obj, DefaultComparisonType);
 
         public bool Equals(object obj, StringComparison comparisonType) =>
             obj is NormalizedPath path && Equals(path, comparisonType);
@@ -501,7 +501,7 @@ namespace Statiq.Common
         public static bool operator !=(in NormalizedPath a, object b) => !a.Equals(b);
 
         /// <inheritdoc />
-        public int CompareTo(object obj) => !(obj is NormalizedPath path) ? 1 : CompareTo(path);
+        public int CompareTo(object? obj) => !(obj is NormalizedPath path) ? 1 : CompareTo(path);
 
         /// <inheritdoc />
         public int CompareTo(NormalizedPath other)

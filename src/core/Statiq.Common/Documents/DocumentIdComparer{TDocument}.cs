@@ -11,7 +11,7 @@ namespace Statiq.Common
     {
         public static DocumentIdComparer<TDocument> Instance { get; } = new DocumentIdComparer<TDocument>();
 
-        public bool Equals(TDocument x, TDocument y) => x?.Id == y?.Id;
+        public bool Equals(TDocument? x, TDocument? y) => x?.Id == y?.Id;
 
         public int GetHashCode(TDocument obj) => obj?.Id.GetHashCode() ?? 0;
     }

@@ -10,7 +10,7 @@ namespace Statiq.Razor
         private readonly List<(Action<object>, object)> _changeCallbacks = new List<(Action<object>, object)>();
         private bool _hasChanged;
 
-        public IDisposable RegisterChangeCallback(Action<object> callback, object state)
+        public IDisposable RegisterChangeCallback(Action<object> callback, object? state)
         {
             _changeCallbacks.Add((callback, state));
             return new ActionDisposable(() => _changeCallbacks.Clear());

@@ -5,4 +5,7 @@
     <ProjectReference Include="..\..\..\src\core\Statiq.Testing\Statiq.Testing.csproj" />
     <ProjectReference Include="..\..\..\src\extensions\Statiq.Lunr\Statiq.Lunr.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Update="Microsoft.NET.Test.Sdk" Version="17.8.0" />
+  </ItemGroup>
 </Project>

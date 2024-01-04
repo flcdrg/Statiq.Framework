@@ -11,7 +11,9 @@ namespace Statiq.Common
     /// Wraps a file within a virtual directory so that crawling back up to the directory
     /// returns the original virtual directory.
     /// </summary>
+#pragma warning disable CS8766 // Nullability of reference types in return type doesn't match implicitly implemented member (possibly because of nullability attributes).
     internal class VirtualInputFile : IFile
+#pragma warning restore CS8766 // Nullability of reference types in return type doesn't match implicitly implemented member (possibly because of nullability attributes).
     {
         private readonly IFile _file;
         private readonly VirtualInputDirectory _directory;

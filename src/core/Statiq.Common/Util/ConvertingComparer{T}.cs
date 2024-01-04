@@ -19,7 +19,7 @@ namespace Statiq.Common
             _comparer = comparer.ThrowIfNull(nameof(comparer));
         }
 
-        public int Compare(object x, object y) =>
+        public int Compare(object? x, object? y) =>
             TypeHelper.TryConvert(x, out T xValue) && TypeHelper.TryConvert(y, out T yValue)
                 ? _comparer.Compare(xValue, yValue)
                 : Comparer<object>.Default.Compare(x, y);

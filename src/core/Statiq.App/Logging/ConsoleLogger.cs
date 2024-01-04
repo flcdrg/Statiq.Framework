@@ -17,11 +17,13 @@ namespace Statiq.App
             _filter = filter;
         }
 
-        public IDisposable BeginScope<TState>(TState state) => EmptyDisposable.Instance;
+        public IDisposable BeginScope<TState>(TState state)
+            where TState : notnull
+            => EmptyDisposable.Instance;
 
         public bool IsEnabled(LogLevel logLevel) => _filter(logLevel);
 
-        public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter)
+        public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception? exception, Func<TState, Exception, string> formatter)
         {
             if (IsEnabled(logLevel))
             {

@@ -46,7 +46,9 @@ namespace Statiq.Common
             }
         }
 
+#pragma warning disable CA1720 // Identifier contains type name
         public string String { get; }
+#pragma warning restore CA1720 // Identifier contains type name
 
         public override bool CanRead => true;
 
@@ -105,7 +107,9 @@ namespace Statiq.Common
         public override Task<int> ReadAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)
             => Task.FromResult(Read(new Span<byte>(buffer, offset, count)));
 
+#pragma warning disable CA1725 // Parameter names should match base declaration
         public override ValueTask<int> ReadAsync(Memory<byte> memory, CancellationToken cancellationToken)
+#pragma warning restore CA1725 // Parameter names should match base declaration
             => new ValueTask<int>(Read(memory.Span));
 
         public sealed override int Read(Span<byte> buffer)

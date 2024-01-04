@@ -6,7 +6,7 @@
   <ItemGroup>
     <PackageReference Include="MetadataExtractor" Version="2.2.0" />
     <PackageReference Include="SharpZipLib" Version="1.2.0" />
-    <PackageReference Include="XmpCore" Version="6.1.10" />
+    <PackageReference Include="XmpCore" Version="6.1.10.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\core\Statiq.Common\Statiq.Common.csproj" />

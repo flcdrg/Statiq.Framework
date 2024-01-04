@@ -10,7 +10,7 @@ namespace Statiq.Common
         public static FileEqualityComparer Default => new FileEqualityComparer();
 
         /// <inheritdoc />
-        public bool Equals(IFile x, IFile y) => x.Path.Equals(y.Path);
+        public bool Equals(IFile? x, IFile? y) => x.Path.Equals(y.Path);
 
         /// <inheritdoc />
         public int GetHashCode(IFile obj) => obj.Path.GetHashCode();

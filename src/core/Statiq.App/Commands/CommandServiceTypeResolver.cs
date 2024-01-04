@@ -14,6 +14,6 @@ namespace Statiq.App
             _serviceProvider = serviceProvider.ThrowIfNull(nameof(serviceProvider));
         }
 
-        public object Resolve(Type type) => _serviceProvider.GetService(type);
+        public object Resolve(Type? type) => _serviceProvider.GetService(type);
     }
 }

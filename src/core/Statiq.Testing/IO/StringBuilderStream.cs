@@ -68,7 +68,7 @@ namespace Statiq.Testing
             base.Dispose(disposing);
         }
 
-        public override IAsyncResult BeginWrite(byte[] buffer, int offset, int count, AsyncCallback callback, object state)
+        public override IAsyncResult BeginWrite(byte[] buffer, int offset, int count, AsyncCallback? callback, object? state)
         {
             Thread.Sleep(_random.Next(200)); // Sleep for a random amount to simulate realistic file operations
             return _buffer.BeginWrite(buffer, offset, count, callback, state);

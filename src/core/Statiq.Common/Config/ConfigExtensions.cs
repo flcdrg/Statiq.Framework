@@ -11,8 +11,10 @@ namespace Statiq.Common
             this Config<TValue> config,
             IDocument document,
             IExecutionContext context,
+#pragma warning disable VSTHRD110 // Observe result of async calls
             Func<TValue, TValue> transform = null) =>
             config?.GetAndTransformValueAsync(document, context, transform) ?? Task.FromResult(default(TValue));
+#pragma warning restore VSTHRD110 // Observe result of async calls
 
         public static async Task<TValue> GetValueAsync<TValue>(
             this Config<object> config,

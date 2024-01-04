@@ -20,6 +20,6 @@ namespace Statiq.Common
 
         public bool ActiveChangeCallbacks => false;
 
-        public IDisposable RegisterChangeCallback(Action<object> callback, object state) => EmptyDisposable.Instance;
+        public IDisposable RegisterChangeCallback(Action<object> callback, object? state) => EmptyDisposable.Instance;
     }
 }

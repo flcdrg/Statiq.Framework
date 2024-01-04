@@ -23,7 +23,7 @@ namespace Statiq.Testing
             CategoryName = categoryName;
         }
 
-        public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter)
+        public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception? exception, Func<TState, Exception, string> formatter)
         {
             string formatted = formatter(state, exception);
             Messages.Enqueue(new TestMessage(CategoryName, logLevel, eventId, state, exception, formatted));
@@ -36,6 +36,8 @@ namespace Statiq.Testing
 
         public bool IsEnabled(LogLevel logLevel) => true;
 
-        public IDisposable BeginScope<TState>(TState state) => EmptyDisposable.Instance;
+        public IDisposable BeginScope<TState>(TState state)
+            where TState : notnull
+            => EmptyDisposable.Instance;
     }
 }

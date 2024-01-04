@@ -17,8 +17,10 @@ namespace Statiq.Common
         protected sealed override Task AnalyzeDocumentAsync(IDocument document, IAnalyzerContext context) =>
             throw new NotSupportedException();
 
-        protected virtual void Analyze(IAnalyzerContext context) =>
+        protected virtual void Analyze(IAnalyzerContext context)
+        {
             context.Inputs.AsParallel().ForAll(input => AnalyzeDocument(input, context));
+        }
 
         /// <summary>
         /// Analyzes an individual document.
