@@ -33,7 +33,9 @@ namespace Statiq.Common
         }
 
         /// <inheritdoc />
+#pragma warning disable CA1725 // Parameter names should match base declaration
         public void Add(KeyValuePair<string, object> pair)
+#pragma warning restore CA1725 // Parameter names should match base declaration
         {
             _items.Add(new MetadataItem(pair));
         }

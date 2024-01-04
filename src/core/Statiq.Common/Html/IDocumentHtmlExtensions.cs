@@ -18,8 +18,10 @@ namespace Statiq.Common
 
         internal static void ClearHtmlDocumentCache() => _htmlDocumentCache.Reset();
 
+#pragma warning disable VSTHRD110 // Observe result of async calls
         internal static void AddOrUpdateCache(IContentProvider contentProvider, IHtmlDocument htmlDocument) =>
             _htmlDocumentCache.AddOrUpdate(contentProvider, _ => Task.FromResult(htmlDocument), (_, __) => Task.FromResult(htmlDocument));
+#pragma warning restore VSTHRD110 // Observe result of async calls
 
         /// <summary>
         /// Gets an <see cref="IHtmlDocument"/> by parsing the content of an <see cref="IDocument"/>.

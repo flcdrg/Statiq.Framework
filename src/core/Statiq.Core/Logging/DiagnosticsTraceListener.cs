@@ -25,18 +25,20 @@ namespace Statiq.Core
             _logger = logger;
         }
 
-        public override void Write(string message) => _logger.LogDebug(message);
+        public override void Write(string? message) => _logger.LogDebug(message);
 
-        public override void WriteLine(string message) => _logger.LogDebug(message);
+        public override void WriteLine(string? message) => _logger.LogDebug(message);
 
-        public override void Fail(string message) => _logger.LogError(message);
+        public override void Fail(string? message) => _logger.LogError(message);
 
-        public override void Fail(string message, string detailMessage) => _logger.LogError(message + " " + detailMessage);
+        public override void Fail(string? message, string? detailMessage) => _logger.LogError(message + " " + detailMessage);
 
-        public override void TraceData(TraceEventCache eventCache, string source, TraceEventType eventType, int id, object data) =>
+        public override void TraceData(TraceEventCache? eventCache, string source, TraceEventType eventType, int id, object? data) =>
             TraceData(eventCache, source, eventType, id, new object[] { data });
 
-        public override void TraceData(TraceEventCache eventCache, string source, TraceEventType eventType, int id, params object[] data)
+#pragma warning disable SA1011 // Closing square brackets should be spaced correctly
+        public override void TraceData(TraceEventCache? eventCache, string source, TraceEventType eventType, int id, params object?[]? data)
+#pragma warning restore SA1011 // Closing square brackets should be spaced correctly
         {
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < data.Length; ++i)
@@ -54,16 +56,18 @@ namespace Statiq.Core
             _logger.LogDebug(sb.ToString());
         }
 
-        public override void TraceTransfer(TraceEventCache eventCache, string source, int id, string message, Guid relatedActivityId) =>
+        public override void TraceTransfer(TraceEventCache? eventCache, string source, int id, string? message, Guid relatedActivityId) =>
             _logger.LogDebug(message);
 
-        public override void TraceEvent(TraceEventCache eventCache, string source, TraceEventType eventType, int id) =>
+        public override void TraceEvent(TraceEventCache? eventCache, string source, TraceEventType eventType, int id) =>
             _logger.Log(LogLevelMapping.TryGetValue(eventType, out LogLevel logLevel) ? logLevel : LogLevel.Trace, id.ToString());
 
-        public override void TraceEvent(TraceEventCache eventCache, string source, TraceEventType eventType, int id, string format, params object[] args) =>
+#pragma warning disable SA1011 // Closing square brackets should be spaced correctly
+        public override void TraceEvent(TraceEventCache? eventCache, string source, TraceEventType eventType, int id, string? format, params object?[]? args) =>
             _logger.Log(LogLevelMapping.TryGetValue(eventType, out LogLevel logLevel) ? logLevel : LogLevel.Trace, format, args);
+#pragma warning restore SA1011 // Closing square brackets should be spaced correctly
 
-        public override void TraceEvent(TraceEventCache eventCache, string source, TraceEventType eventType, int id, string message) =>
+        public override void TraceEvent(TraceEventCache? eventCache, string source, TraceEventType eventType, int id, string? message) =>
             _logger.Log(LogLevelMapping.TryGetValue(eventType, out LogLevel logLevel) ? logLevel : LogLevel.Trace, message);
     }
 }

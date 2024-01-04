@@ -10,7 +10,7 @@ namespace Statiq.Common
         public static DirectoryEqualityComparer Default => new DirectoryEqualityComparer();
 
         /// <inheritdoc />
-        public bool Equals(IDirectory x, IDirectory y) => x.Path.Equals(y.Path);
+        public bool Equals(IDirectory? x, IDirectory? y) => x.Path.Equals(y.Path);
 
         /// <inheritdoc />
         public int GetHashCode(IDirectory obj) => obj.Path.GetHashCode();

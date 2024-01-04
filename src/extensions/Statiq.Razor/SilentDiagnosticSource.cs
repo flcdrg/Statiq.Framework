@@ -2,7 +2,7 @@
 {
     internal class SilentDiagnosticSource : System.Diagnostics.DiagnosticSource
     {
-        public override void Write(string name, object value)
+        public override void Write(string name, object? value)
         {
             // Do nothing
         }

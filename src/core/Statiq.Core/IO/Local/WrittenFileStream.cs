@@ -24,7 +24,7 @@ namespace Statiq.Core
             _file = file.ThrowIfNull(nameof(file));
         }
 
-        public override IAsyncResult BeginWrite(byte[] buffer, int offset, int count, AsyncCallback callback, object state)
+        public override IAsyncResult BeginWrite(byte[] buffer, int offset, int count, AsyncCallback? callback, object? state)
         {
             _wroteData = true;
             return base.BeginWrite(buffer, offset, count, callback, state);

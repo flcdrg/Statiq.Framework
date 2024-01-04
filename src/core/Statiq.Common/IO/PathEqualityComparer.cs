@@ -39,6 +39,8 @@ namespace Statiq.Common
         /// <returns>
         /// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.
         /// </returns>
+#pragma warning disable CA1725 // Parameter names should match base declaration
         public int GetHashCode(NormalizedPath path) => path.GetHashCode();
+#pragma warning restore CA1725 // Parameter names should match base declaration
     }
 }

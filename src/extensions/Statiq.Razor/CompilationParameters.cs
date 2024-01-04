@@ -36,7 +36,7 @@ namespace Statiq.Razor
 
         public override int GetHashCode() => CacheCode;
 
-        public override bool Equals(object obj) => Equals(obj as CompilationParameters);
+        public override bool Equals(object? obj) => Equals(obj as CompilationParameters);
 
         public bool Equals([AllowNull] CompilationParameters other)
         {

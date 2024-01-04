@@ -28,7 +28,9 @@ namespace Statiq.Common
 
         public override FilteredDocumentList<TDocument> this[params string[] patterns] => _filterFunc(this, patterns);
 
+#pragma warning disable CA1725
         public TDocument Get(NormalizedPath path) => _tree.Get(path);
+#pragma warning restore CA1725
 
         public DocumentList<TDocument> GetAncestorsOf(TDocument document, bool includeSelf) => _tree.GetAncestorsOf(document, includeSelf);
 

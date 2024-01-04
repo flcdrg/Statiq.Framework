@@ -294,7 +294,7 @@ namespace Statiq.Core
         {
             private readonly TreePathEqualityComparer _comparer = new TreePathEqualityComparer();
 
-            public bool Equals(TreeNode x, TreeNode y) =>
+            public bool Equals(TreeNode? x, TreeNode? y) =>
                 _comparer.Equals(x?.TreePath, y?.TreePath);
 
             public int GetHashCode(TreeNode obj) =>
@@ -303,7 +303,9 @@ namespace Statiq.Core
 
         private class TreePathEqualityComparer : IEqualityComparer<string[]>
         {
-            public bool Equals(string[] x, string[] y) => x.SequenceEqual(y);
+#pragma warning disable SA1011 // Closing square brackets should be spaced correctly
+            public bool Equals(string[]? x, string[]? y) => x.SequenceEqual(y);
+#pragma warning restore SA1011 // Closing square brackets should be spaced correctly
 
             public int GetHashCode(string[] obj) =>
                 obj?.Aggregate(17, (index, x) => (index * 23) + (x?.GetHashCode() ?? 0)) ?? 0;

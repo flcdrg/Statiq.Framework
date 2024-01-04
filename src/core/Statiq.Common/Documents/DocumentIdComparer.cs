@@ -9,7 +9,7 @@ namespace Statiq.Common
     {
         public static DocumentIdComparer Instance { get; } = new DocumentIdComparer();
 
-        public bool Equals(IDocument x, IDocument y) => x?.Id == y?.Id;
+        public bool Equals(IDocument? x, IDocument? y) => x?.Id == y?.Id;
 
         public int GetHashCode(IDocument obj) => obj?.Id.GetHashCode() ?? 0;
     }

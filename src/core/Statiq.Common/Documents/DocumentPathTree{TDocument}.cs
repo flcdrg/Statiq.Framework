@@ -93,7 +93,9 @@ namespace Statiq.Common
             return path;
         }
 
+#pragma warning disable CA1725 // Parameter names should match base declaration
         public TDocument Get(NormalizedPath path)
+#pragma warning restore CA1725 // Parameter names should match base declaration
         {
             foreach ((NormalizedPath, TDocument) item in _documents)
             {

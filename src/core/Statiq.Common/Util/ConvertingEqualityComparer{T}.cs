@@ -18,14 +18,16 @@ namespace Statiq.Common
             _comparer = comparer.ThrowIfNull(nameof(comparer));
         }
 
-        bool IEqualityComparer<object>.Equals(object x, object y) =>
+        bool IEqualityComparer<object>.Equals(object? x, object? y) =>
             TypeHelper.TryConvert(x, out T xValue)
                 && TypeHelper.TryConvert(y, out T yValue)
                 && _comparer.Equals(xValue, yValue);
 
+#pragma warning disable CS8607 // A possible null value may not be used for a type marked with [NotNull] or [DisallowNull]
         public int GetHashCode(object obj) =>
             TypeHelper.TryConvert(obj, out T value)
                 ? _comparer.GetHashCode(value)
                 : 0;
+#pragma warning restore CS8607 // A possible null value may not be used for a type marked with [NotNull] or [DisallowNull]
     }
 }

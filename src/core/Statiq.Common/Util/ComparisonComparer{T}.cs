@@ -16,6 +16,6 @@ namespace Statiq.Common
             _comparison = comparison.ThrowIfNull(nameof(comparison));
         }
 
-        public int Compare(T x, T y) => _comparison(x, y);
+        public int Compare(T? x, T? y) => _comparison(x, y);
     }
 }

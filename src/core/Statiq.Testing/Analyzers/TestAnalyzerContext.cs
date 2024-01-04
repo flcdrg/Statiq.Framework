@@ -23,7 +23,9 @@ namespace Statiq.Testing
         {
         }
 
+#pragma warning disable CA1721 // Property names should not match get methods
         public LogLevel LogLevel { get; set; } = LogLevel.Warning;
+#pragma warning restore CA1721 // Property names should not match get methods
 
         public ConcurrentBag<TestAnalyzerResult> AnalyzerResults { get; } = new ConcurrentBag<TestAnalyzerResult>();
 

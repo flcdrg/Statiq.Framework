@@ -79,7 +79,7 @@ namespace Statiq.Feeds.Syndication.Rss
             return Value.ToString();
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             if (obj is RssDate)
             {

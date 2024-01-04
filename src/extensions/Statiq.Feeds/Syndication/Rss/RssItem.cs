@@ -223,7 +223,9 @@ namespace Statiq.Feeds.Syndication.Rss
         }
 
         [XmlElement("guid")]
+#pragma warning disable CA1720 // Identifier contains type name
         public RssGuid Guid
+#pragma warning restore CA1720 // Identifier contains type name
         {
             get
             {

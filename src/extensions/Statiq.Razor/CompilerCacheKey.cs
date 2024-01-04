@@ -38,9 +38,9 @@ namespace Statiq.Razor
 
         public override int GetHashCode() => CacheCode;
 
-        public override bool Equals(object obj) => Equals(obj as CompilerCacheKey);
+        public override bool Equals(object? obj) => Equals(obj as CompilerCacheKey);
 
-        public bool Equals(CompilerCacheKey other)
+        public bool Equals(CompilerCacheKey? other)
         {
             if (other is null || other.CacheCode != CacheCode)
             {

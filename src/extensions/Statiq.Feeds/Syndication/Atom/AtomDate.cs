@@ -81,7 +81,7 @@ namespace Statiq.Feeds.Syndication.Atom
             return Value.ToString();
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             if (obj is AtomDate)
             {

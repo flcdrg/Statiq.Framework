@@ -23,7 +23,9 @@ namespace Statiq.Common
             _disposeStream = disposeStream;
         }
 
+#pragma warning disable CA1721 // Property names should not match get methods
         protected Stream Stream { get; }
+#pragma warning restore CA1721 // Property names should not match get methods
 
         /// <summary>
         /// Gets the wrapped stream and locks access until it's disposed.

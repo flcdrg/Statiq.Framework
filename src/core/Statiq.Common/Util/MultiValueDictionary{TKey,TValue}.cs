@@ -7,6 +7,7 @@ using System.Linq;
 namespace Statiq.Common
 {
     public class MultiValueDictionary<TKey, TValue> : IReadOnlyDictionary<TKey, IEnumerable<TValue>>, IEnumerable<KeyValuePair<TKey, TValue>>
+        where TKey : notnull
     {
         private readonly Dictionary<TKey, ICollection<TValue>> _dictionary;
         private readonly Func<TKey, ICollection<TValue>> _collectionFactory;

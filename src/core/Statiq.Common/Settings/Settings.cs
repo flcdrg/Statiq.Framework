@@ -99,7 +99,7 @@ namespace Statiq.Common
         public IEnumerator<KeyValuePair<string, object>> GetRawEnumerator() =>
             _settings.Select(x => SettingsValue.Get(x)).GetEnumerator();
 
-        public bool TryGetValue(string key, [MaybeNullWhen(false)] out object value) =>
+        public bool TryGetValue(string key, out object value) =>
             this.TryGetValue<object>(key, out value);
 
         public void Add(string key, object value)

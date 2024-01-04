@@ -38,7 +38,7 @@ namespace Statiq.Common
 
             public bool HiddenPageTrailingSlash { get; set; }
 
-            public bool Equals(GetLinkCacheKey other)
+            public bool Equals(GetLinkCacheKey? other)
             {
                 if (ReferenceEquals(null, other))
                 {
@@ -61,7 +61,7 @@ namespace Statiq.Common
                    && HiddenPageTrailingSlash == other.HiddenPageTrailingSlash;
             }
 
-            public override bool Equals(object obj)
+            public override bool Equals(object? obj)
             {
                 if (ReferenceEquals(null, obj))
                 {

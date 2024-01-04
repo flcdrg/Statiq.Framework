@@ -31,9 +31,9 @@ namespace Statiq.Razor
 
         public override int GetHashCode() => CacheCode;
 
-        public override bool Equals(object obj) => Equals(obj as AssemblyCacheKey);
+        public override bool Equals(object? obj) => Equals(obj as AssemblyCacheKey);
 
-        public bool Equals(AssemblyCacheKey other)
+        public bool Equals(AssemblyCacheKey? other)
         {
             if (other is null || other.CacheCode != CacheCode)
             {

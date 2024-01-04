@@ -26,7 +26,7 @@ namespace Statiq.Core
         public bool HasReturnStatement { get; private set; }
 
         // Standard script code
-        public override void Visit(SyntaxNode node)
+        public override void Visit(SyntaxNode? node)
         {
             if (node is CompilationUnitSyntax)
             {
