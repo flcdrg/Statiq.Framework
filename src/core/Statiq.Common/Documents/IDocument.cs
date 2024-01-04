@@ -120,7 +120,7 @@ namespace Statiq.Common
 
         // ILogger default implementation
 
-        void ILogger.Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter) =>
+        void ILogger.Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception? exception, Func<TState, Exception, string> formatter) =>
             IExecutionContext.Current.Log(logLevel, this, eventId, state, exception, formatter);
 
         bool ILogger.IsEnabled(LogLevel logLevel) => IExecutionContext.Current.IsEnabled(logLevel);

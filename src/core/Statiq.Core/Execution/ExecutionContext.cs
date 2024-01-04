@@ -198,11 +198,13 @@ namespace Statiq.Core
 
         // ILogger
 
-        public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter) =>
+        public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception? exception, Func<TState, Exception, string> formatter) =>
             Logger.Log(logLevel, eventId, state, exception, (s, e) => _logPrefix + formatter(s, e));
 
         public bool IsEnabled(LogLevel logLevel) => Logger.IsEnabled(logLevel);
 
-        public IDisposable BeginScope<TState>(TState state) => Logger.BeginScope(state);
+        public IDisposable BeginScope<TState>(TState state)
+            where TState : notnull
+            => Logger.BeginScope(state);
     }
 }

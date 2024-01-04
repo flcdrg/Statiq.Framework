@@ -178,7 +178,7 @@ namespace Statiq.Common
 
         // IConfiguration
 
-        string IConfiguration.this[string key]
+        string? IConfiguration.this[string key]
         {
             get => ((IConfiguration)this).GetSection(key).Value;
             set => throw new NotSupportedException();

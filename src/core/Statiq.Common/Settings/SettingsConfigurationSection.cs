@@ -23,7 +23,7 @@ namespace Statiq.Common
             _value = value;
         }
 
-        public string this[string key]
+        public string? this[string key]
         {
             get => _configuration[$"{Path}:{key}"];
             set => throw new NotSupportedException();
@@ -33,7 +33,7 @@ namespace Statiq.Common
 
         public string Path { get; }
 
-        public string Value
+        public string? Value
         {
             get
             {

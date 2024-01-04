@@ -40,7 +40,9 @@ namespace Statiq.Common
                 _logger = logger.ThrowIfNull(nameof(logger));
             }
 
-            public IDisposable BeginScope<TState>(TState state) => _logger.BeginScope(state);
+            public IDisposable BeginScope<TState>(TState state)
+                where TState : notnull
+                => _logger.BeginScope(state);
 
             public bool IsEnabled(LogLevel logLevel) => _logger.IsEnabled(logLevel);
 
@@ -48,7 +50,7 @@ namespace Statiq.Common
                 LogLevel logLevel,
                 EventId eventId,
                 TState state,
-                Exception exception,
+                Exception? exception,
                 Func<TState, Exception, string> formatter) =>
                 _provider.Log(_logger, logLevel, eventId, state, exception, formatter);
         }
